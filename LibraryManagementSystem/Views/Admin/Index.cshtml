@@ -1,0 +1,26 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend>Library Management System</legend>
+            <button type="button" onclick="location.href='@Url.Action("LogIn", "Admin")'">Admin</button>
+            <button type="button" onclick="location.href='@Url.Action("SaveStudent", "Student")'">Student</button>
+            
+            
+        </fieldset>
+    }
+</body>
+</html>
+

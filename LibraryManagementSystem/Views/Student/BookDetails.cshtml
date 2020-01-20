@@ -1,0 +1,55 @@
+﻿@model LibraryManagementSystem.Models.ViewModel.BookDetailsViewModel
+@using LibraryManagementSystem.Models.ViewModel;
+@{
+    ViewBag.Title = "BookDetails";
+}
+
+
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Book Details</title>
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+   
+</head>
+<body>
+   <fieldset>
+
+       <div>
+           @using (Html.BeginForm())
+           {
+               <table class="table" >
+                   <thead>
+                       <tr>
+                           <th>Book Name</th>
+                           <th>Book Id</th>
+                           <th>Author Name</th>
+                           <th>Department Name</th>
+                           <th>Quantity</th>
+                       </tr>
+                   </thead>
+                   <tbody> 
+                       <tr>
+                        @foreach (BookDetailsViewModel aBookDetail in ViewBag.BookList) {
+                           <td>@aBookDetail.BookName</td>
+                            <td>@aBookDetail.BookId</td>
+                            <td>@aBookDetail.AuthorName</td>
+                            <td>@aBookDetail.DepartmentName</td>
+                            <td>@aBookDetail.Quantity</td>
+                            
+                            }
+                       </tr>
+                      
+                   </tbody>
+               </table>
+           }
+       </div>
+   </fieldset>
+            
+</body>
+</html>
+

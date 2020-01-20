@@ -1,0 +1,41 @@
+﻿@model LibraryManagementSystem.Models.Admin
+@using LibraryManagementSystem.Models
+@{
+    ViewBag.Title = "AssignBook";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Save</title>
+
+</head>
+<body>
+    @using (Html.BeginForm())
+    {
+        <fieldset>
+            <legend>Log In </legend>
+            <table>
+                <tr>
+                    <td>@Html.LabelFor(c=>c.AdminId)</td>
+                    <td>@Html.TextBoxFor(c => c.AdminId)</td>
+                </tr>
+                <tr>
+                    <td>@Html.LabelFor(c => c.Password)</td>
+                    <td>@Html.PasswordFor(c => c.Password)</td>
+                </tr>
+
+                <tr>
+                    <td><input type="submit" value="Log In" /></td>
+                </tr>
+            </table>
+            @if (ViewBag.Message != null)
+            {
+                <p>@ViewBag.Message</p>
+            }
+        </fieldset>
+    }
+</body>
+</html>

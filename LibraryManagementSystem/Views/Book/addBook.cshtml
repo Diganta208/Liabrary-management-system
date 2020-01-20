@@ -1,0 +1,67 @@
+﻿@model LibraryManagementSystem.Models.Books
+@using LibraryManagementSystem.Models
+@{
+    ViewBag.Title = "addBook";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Save</title>
+   
+</head>
+<body>
+    <div>
+        <fieldset>
+            <legend>Add Book Information </legend>
+             @using (Html.BeginForm(null, null, FormMethod.Post, new { id = "BookInfo"}))
+             {
+                <table>
+            <tr>
+                <td>@Html.LabelFor(c => c.BookName)</td>
+                <td>@Html.TextBoxFor(c => c.BookName)</td>
+                
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.BookId)</td>
+                <td>@Html.TextBoxFor(c => c.BookId)</td>
+                <td>@Html.ValidationMessageFor(c => c.BookId)</td>
+            </tr>
+             <tr>
+                <td>@Html.LabelFor(c => c.AuthorName)</td>
+                <td>@Html.TextBoxFor(c => c.AuthorName)</td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(c => c.DepartmentId)</td>
+                <td>@Html.DropDownListFor(c => c.DepartmentId, new SelectList(ViewBag.Departments, "Id", "DepartmentName"), "--Select--")
+            </tr>
+
+              <tr>
+                  <td>@Html.LabelFor(c => c.Quantity)</td>
+                  <td>@Html.TextBoxFor(c => c.Quantity)</td>
+             </tr>
+              <tr>
+                 <td>@Html.LabelFor(c => c.Price)</td>
+                 <td>@Html.TextBoxFor(c => c.Price)</td>
+             </tr>
+
+             <tr>
+                 <td><input type="submit" value="Save" /></td>
+             </tr>
+            </table> 
+             }
+            @if (ViewBag.Message != null)
+            {
+                <p>@ViewBag.Message</p>
+            }
+
+        </fieldset>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+ </body>
+
+</html>

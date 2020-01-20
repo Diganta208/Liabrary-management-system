@@ -1,0 +1,55 @@
+﻿@model LibraryManagementSystem.Models.Student
+@using LibraryManagementSystem.Models
+@{
+    ViewBag.Title = "SaveStudent";
+}
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Save</title>
+
+</head>
+<body>
+    <div>
+        <fieldset>
+            <legend>Add Student Information </legend>
+            @using (Html.BeginForm())
+            {
+                <table>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.Name)</td>
+                        <td>@Html.TextBoxFor(c => c.Name)</td>
+
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.StudentId)</td>
+                        <td>@Html.TextBoxFor(c => c.StudentId)</td>
+                    </tr>
+             
+                    <tr>
+                        <td>@Html.LabelFor(c => c.DepartmentId)</td>
+                        <td>@Html.DropDownListFor(c => c.DepartmentId, new SelectList(ViewBag.Departments, "Id", "DepartmentName"), "--Select--")
+                    </tr>
+
+               
+
+                    <tr>
+                        <td><input type="submit" value="Save" /></td>
+                    </tr>
+                </table>
+            }
+            @if (ViewBag.Message != null)
+            {
+                <p>@ViewBag.Message</p>
+            }
+
+        </fieldset>
+    </div>
+
+
+</body>
+</html>
+
+

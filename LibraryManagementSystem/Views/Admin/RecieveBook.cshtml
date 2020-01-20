@@ -1,0 +1,94 @@
+﻿@model LibraryManagementSystem.Models.RecieveBook
+@using LibraryManagementSystem.Models
+@{
+    ViewBag.Title = "RecieveBook";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Save</title>
+
+</head>
+<body>
+    <div>
+
+        <fieldset>
+            <legend>Recieve Book </legend>
+            @using (Html.BeginForm())
+            {
+                <table>
+                    <tr>
+
+                        <td>Student Id</td>
+                        <td><input type="text" name="student"/></td>
+
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.DepartmentId)</td>
+                        <td>@Html.DropDownListFor(c => c.DepartmentId, new SelectList(ViewBag.Departments, "Id", "DepartmentName"), "--Select--")
+                    </tr>
+                    <tr>
+                        <td>@Html.LabelFor(c => c.BookId)</td>
+                        <td>
+
+                            <select name="BookId" id="BookId">
+                                <option value="">--Select--</option>
+
+                            </select>
+                        </td>
+                    </tr>
+
+
+
+                    <tr>
+
+                        <td>@Html.LabelFor(c => c.RecieveDate)</td>
+                        <td><input type="date" id="RecieveDate" name="RecieveDate" /></td>
+
+                    </tr>
+                    <tr>
+                        <td><input type="submit" value="Save" /></td>
+                    </tr>
+
+                </table>
+            }
+
+            @if (ViewBag.Message != null)
+            {
+                <p>@ViewBag.Message</p>
+            }
+        </fieldset>
+    </div>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+
+     $(document).ready(function() {
+         $("#DepartmentId").change(function () {
+             var dId = $("#DepartmentId").val();
+             $("#BookId").empty();
+             $("#BookId").append("--Select--")
+            var json = {
+                DepartmentId: dId
+            };
+
+            $.ajax({
+                type: "POST",
+                url: '@Url.Action("GetBookByDepartmentId", "Admin")',
+                contentType: "application/json; charset=utf-8",
+                data: JSON.stringify(json),
+                success:function(data) {
+                    $.each(data, function(key, value) {
+                        $("#BookId").append('<option value=' + value.Id + '  >' + value.BookId + '</option');
+                    });
+                }
+            });
+        });
+            });
+
+    </script>
+
+</body>
+</html>
